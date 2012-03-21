@@ -1,0 +1,6 @@
+name: MinecartsMod
+main: me.Kruithne.MinecartsMod.MinecartsMod
+version: 1.0
+author: Kruithne
+depend: [RunsafeMinecraftPluginFramework]
+description: Increases the default speed of Minecarts.
