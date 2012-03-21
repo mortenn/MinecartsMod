@@ -3,7 +3,6 @@ package me.Kruithne.MinecartsMod;
 import me.Kruithne.RMPF.RMPFConfiguration;
 
 import org.bukkit.Server;
-import org.bukkit.entity.Minecart;
 import org.bukkit.entity.PoweredMinecart;
 import org.bukkit.entity.Vehicle;
 import org.bukkit.event.EventHandler;

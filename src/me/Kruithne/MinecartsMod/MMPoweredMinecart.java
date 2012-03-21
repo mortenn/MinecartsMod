@@ -3,7 +3,6 @@ package me.Kruithne.MinecartsMod;
 import org.bukkit.Material;
 import org.bukkit.Server;
 import org.bukkit.block.Block;
-import org.bukkit.entity.Minecart;
 import org.bukkit.entity.PoweredMinecart;
 import org.bukkit.util.Vector;
 
@@ -19,32 +18,15 @@ public class MMPoweredMinecart {
 		this.server = server;
 	}
 	
-	public boolean isOnStraightRail()
+	public byte trackBelow()
 	{
 		Block blockBelow = this.cart.getLocation().getBlock();
 		
 		if (blockBelow.getType() == Material.RAILS)
 		{
-			byte dataValue = blockBelow.getData();
-			if (dataValue == 0 || dataValue == 1)
-				return true;
+			return blockBelow.getData();
 		}
-		
-		return false;
-	}
-	
-	public boolean isOnSlopedRail()
-	{
-		Block blockBelow = this.cart.getLocation().getBlock();
-		
-		if (blockBelow.getType() == Material.RAILS)
-		{
-			byte dataValue = blockBelow.getData();
-			if (dataValue == 2 || dataValue == 3 || dataValue == 4 || dataValue == 5)
-				return true;
-		}
-		
-		return false;
+		return -1;
 	}
 	
 	public boolean isPowered()
@@ -54,19 +36,17 @@ public class MMPoweredMinecart {
 	
 	public void gainSpeed(Double speed)
 	{
-		Vector direction = this.cart.getLocation().getDirection();	
-		if (this.isOnSlopedRail() || this.isOnStraightRail())
-		{
-			//this.server.broadcastMessage("Minecart (" + this.cart.getEntityId() + ") was on slope/straight, setting speed.");		
-			this.cart.setVelocity(new Vector(direction.getX() * speed, direction.getY(), direction.getZ() * speed));
-		}
-		else
-		{
-			//this.server.broadcastMessage("Minecart (" + this.cart.getEntityId() + ") was not on valid track, MAKING IT SLOW.");	
-			this.cart.setVelocity(new Vector(direction.getX() * 0.1, direction.getY(), direction.getZ() * 0.1));
-		}
-		this.server.broadcastMessage("Minecart (" + this.cart.getEntityId() + ") going in direction:");
-		this.server.broadcastMessage("X: " + direction.getX());
-		this.server.broadcastMessage("Z: " + direction.getZ());
+		Vector direction = this.cart.getLocation().getDirection();
+		Vector velocity  = this.cart.getVelocity();
+		
+		if (trackBelow() == 0)
+			this.cart.setVelocity(new Vector(5.0, 0.0, 0.0));
+		
+		this.server.broadcastMessage("VelocityX: " + velocity.getX());
+		this.server.broadcastMessage("VelocityY: " + velocity.getY());
+		this.server.broadcastMessage("Velocity Length: " + velocity.length());
+		this.server.broadcastMessage("DirectionX: " + direction.getX());
+		this.server.broadcastMessage("DirectionY: " + direction.getY());
+		this.server.broadcastMessage("Direction Length: " + direction.length());
 	}
 }
