@@ -67,6 +67,6 @@ public class MMPoweredMinecart {
 		}
 		this.server.broadcastMessage("Minecart (" + this.cart.getEntityId() + ") going in direction:");
 		this.server.broadcastMessage("X: " + direction.getX());
-		this.server.broadcastMessage("|: " + direction.getZ());
+		this.server.broadcastMessage("Z: " + direction.getZ());
 	}
 }
