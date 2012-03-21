@@ -54,17 +54,19 @@ public class MMPoweredMinecart {
 	
 	public void gainSpeed(Double speed)
 	{
+		Vector direction = this.cart.getLocation().getDirection();	
 		if (this.isOnSlopedRail() || this.isOnStraightRail())
 		{
-			this.server.broadcastMessage("Minecart (" + this.cart.getEntityId() + ") was on slope/straight, setting speed.");
-			Vector direction = this.cart.getLocation().getDirection();			
+			//this.server.broadcastMessage("Minecart (" + this.cart.getEntityId() + ") was on slope/straight, setting speed.");		
 			this.cart.setVelocity(new Vector(direction.getX() * speed, direction.getY(), direction.getZ() * speed));
 		}
 		else
 		{
-			this.server.broadcastMessage("Minecart (" + this.cart.getEntityId() + ") was not on valid track, MAKING IT SLOW.");	
-			Vector direction = this.cart.getLocation().getDirection();			
+			//this.server.broadcastMessage("Minecart (" + this.cart.getEntityId() + ") was not on valid track, MAKING IT SLOW.");	
 			this.cart.setVelocity(new Vector(direction.getX() * 0.1, direction.getY(), direction.getZ() * 0.1));
 		}
+		this.server.broadcastMessage("Minecart (" + this.cart.getEntityId() + ") going in direction:");
+		this.server.broadcastMessage("X: " + direction.getX());
+		this.server.broadcastMessage("|: " + direction.getZ());
 	}
 }
