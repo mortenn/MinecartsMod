@@ -40,13 +40,35 @@ public class MMPoweredMinecart {
 		Vector velocity  = this.cart.getVelocity();
 		
 		if (trackBelow() == 0)
-			this.cart.setVelocity(new Vector(5.0, 0.0, 0.0));
+		{
+			if (direction.getX() > 0.0)
+			{
+				this.cart.setVelocity(new Vector(5.0, 0.0, 0.0));
+			}
+			else if (direction.getX() < 0.0)
+			{
+				//this.cart.setVelocity(new Vector(-5.0, 0.0, 0.0));
+			}
+		}
+		else if (trackBelow() == 1)
+		{
+			if (direction.getZ() > 0)
+			{
+				this.cart.setVelocity(new Vector(0.0, 0.0, 5.0));
+			}
+			else if (direction.getZ() < 0.0)
+			{
+				//this.cart.setVelocity(new Vector(0.0, 0.0, -5.0));
+			}
+		}
 		
 		this.server.broadcastMessage("VelocityX: " + velocity.getX());
 		this.server.broadcastMessage("VelocityY: " + velocity.getY());
+		this.server.broadcastMessage("VelocityZ: " + velocity.getZ());
 		this.server.broadcastMessage("Velocity Length: " + velocity.length());
 		this.server.broadcastMessage("DirectionX: " + direction.getX());
 		this.server.broadcastMessage("DirectionY: " + direction.getY());
+		this.server.broadcastMessage("DirectionZ: " + velocity.getZ());
 		this.server.broadcastMessage("Direction Length: " + direction.length());
 	}
 }
