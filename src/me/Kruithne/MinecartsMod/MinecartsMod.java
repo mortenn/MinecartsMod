@@ -1,36 +1,30 @@
 package me.Kruithne.MinecartsMod;
 
-import me.Kruithne.RMPF.RMPFConfiguration;
-import me.Kruithne.RMPF.RMPFOutput;
-import me.Kruithne.RMPF.RMPFTimedEventHandler;
+import java.io.InputStream;
 
-import org.bukkit.Server;
-import org.bukkit.plugin.PluginManager;
-import org.bukkit.plugin.java.JavaPlugin;
+import me.Kruithne.RMPF.IConfigurationDefaults;
+import me.Kruithne.RMPF.IConfigurationFile;
+import me.Kruithne.RMPF.RMPF;
 
-public class MinecartsMod extends JavaPlugin {
-	
-	private RMPFOutput output;
-	private RMPFConfiguration config;
-	private MinecartPowerGrid powerGrid;
-	
-	public void onEnable()
+public class MinecartsMod extends RMPF implements IConfigurationFile, IConfigurationDefaults 
+{
+	@Override
+	protected void PluginSetup()
 	{
-		Server server = this.getServer();
-		this.output = new RMPFOutput(server, this.getLogger());
-		this.config = new RMPFConfiguration(Constants.configurationFile, this.output, getResource(Constants.defaultConfigurationFile));
-		new RMPFTimedEventHandler(server, this);
-		this.powerGrid = new MinecartPowerGrid(new RMPFTimedEventHandler(server, this), server);
-		
-		PluginManager pluginManager = server.getPluginManager();
-		
-		pluginManager.registerEvents(new VehicleListener(this.config, server, this.powerGrid), this);
-		pluginManager.registerEvents(new PlayerListener(this.powerGrid), this);
+		this.container.addComponent(MinecartPowerGrid.class);
+		this.container.addComponent(PlayerListener.class);
+		this.container.addComponent(VehicleListener.class);
 	}
 	
-	public void onDisable()
+	@Override
+	public InputStream getDefaultConfiguration() 
 	{
-		
+		return getResource(Constants.defaultConfigurationFile);
 	}
-	
+
+	@Override
+	public String getConfigurationPath() 
+	{
+		return Constants.configurationFile;
+	}
 }
