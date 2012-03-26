@@ -1,6 +1,6 @@
 package me.Kruithne.MinecartsMod;
 
-import me.Kruithne.RMPF.RMPFConfiguration;
+import no.runsafe.framework.IConfiguration;
 
 import org.bukkit.Server;
 import org.bukkit.entity.PoweredMinecart;
@@ -12,11 +12,11 @@ import org.bukkit.event.vehicle.VehicleMoveEvent;
 
 public class VehicleListener implements Listener {
 	
-	RMPFConfiguration config;
+	IConfiguration config;
 	Server server;
 	MinecartPowerGrid powerGrid;
 
-	public VehicleListener(RMPFConfiguration config, Server server, MinecartPowerGrid powerGrid)
+	public VehicleListener(IConfiguration config, Server server, MinecartPowerGrid powerGrid)
 	{
 		this.powerGrid = powerGrid;
 		this.config = config;

@@ -2,18 +2,23 @@ package me.Kruithne.MinecartsMod;
 
 import java.io.InputStream;
 
-import me.Kruithne.RMPF.IConfigurationDefaults;
-import me.Kruithne.RMPF.IConfigurationFile;
-import me.Kruithne.RMPF.RMPF;
+import no.runsafe.framework.IConfigurationDefaults;
+import no.runsafe.framework.IConfigurationFile;
+import no.runsafe.framework.RunsafePlugin;
 
-public class MinecartsMod extends RMPF implements IConfigurationFile, IConfigurationDefaults 
+public class MinecartsMod extends RunsafePlugin implements IConfigurationFile, IConfigurationDefaults 
 {
+	public MinecartsMod()
+	{
+		super();
+	}
+	
 	@Override
 	protected void PluginSetup()
 	{
-		this.container.addComponent(MinecartPowerGrid.class);
-		this.container.addComponent(PlayerListener.class);
-		this.container.addComponent(VehicleListener.class);
+		this.addComponent(MinecartPowerGrid.class);
+		this.addComponent(PlayerListener.class);
+		this.addComponent(VehicleListener.class);
 	}
 	
 	@Override

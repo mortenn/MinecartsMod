@@ -4,18 +4,18 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 
-import me.Kruithne.RMPF.RMPFTimedEventHandler;
+import no.runsafe.framework.IScheduler;
 
 import org.bukkit.Server;
 import org.bukkit.entity.PoweredMinecart;
 
 public class MinecartPowerGrid {
 
-	RMPFTimedEventHandler timedEventHandler;
+	IScheduler timedEventHandler;
 	HashMap<Integer, Integer> carts;
 	Server server;
 	
-	public MinecartPowerGrid(RMPFTimedEventHandler timedEventHandler, Server server)
+	public MinecartPowerGrid(IScheduler timedEventHandler, Server server)
 	{
 		this.timedEventHandler = timedEventHandler;
 		this.carts = new HashMap<Integer, Integer>();
