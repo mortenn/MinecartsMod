@@ -45,6 +45,5 @@ public class VehicleListener implements Listener {
 	{
 		if (event.getVehicle() instanceof PoweredMinecart)
 			event.setCancelled(true);
-	}
-	
+	}	
 }
