@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 
-import no.runsafe.framework.IScheduler;
+import no.runsafe.framework.interfaces.IScheduler;
 
 import org.bukkit.Server;
 import org.bukkit.entity.PoweredMinecart;

@@ -1,6 +1,6 @@
 package me.Kruithne.MinecartsMod;
 
-import no.runsafe.framework.IConfiguration;
+import no.runsafe.framework.interfaces.IConfiguration;
 
 import org.bukkit.Server;
 import org.bukkit.entity.PoweredMinecart;
